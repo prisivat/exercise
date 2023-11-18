@@ -37,7 +37,7 @@ const ExerciseTracker = () => {
   //adding new exercise in default list (exercises)
   const addExercise = () => {
     if (newExercise.name && newExercise.description && newExercise.duration && newExercise.date) {
-      newExercise.id = (exercises[exercises.length-1].id)+1
+      newExercise.id = exercises.length != 0? ((exercises[exercises.length-1].id)+1):1;
       setExercises([...exercises, newExercise]);
       setNewExercise({
         id: 0,
