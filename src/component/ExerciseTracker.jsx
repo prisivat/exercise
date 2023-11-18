@@ -2,15 +2,17 @@
 import React, { useState } from 'react';
 
 const ExerciseTracker = () => {
+  //deafult value in the table
   const [exercises, setExercises] = useState([{
-    id: '1',
+    id: 1,
     name: 'Priya',
     description: 'test',
     duration: '5mins',
     date: '17/11/2023',
   }]);
+  //while adding new data || the default value in the inputs
   const [newExercise, setNewExercise] = useState({
-    id: '',
+    id: 0,
     name: '',
     description: '',
     duration: '',
@@ -23,6 +25,7 @@ const ExerciseTracker = () => {
     borderBottom: "2px solid black" 
  }
 
+ //if any change happened in input this function will be called and saved
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewExercise({
@@ -31,11 +34,13 @@ const ExerciseTracker = () => {
     });
   };
 
+  //adding new exercise in default list (exercises)
   const addExercise = () => {
     if (newExercise.name && newExercise.description && newExercise.duration && newExercise.date) {
+      newExercise.id = (exercises[exercises.length-1].id)+1
       setExercises([...exercises, newExercise]);
       setNewExercise({
-        id: '',
+        id: 0,
         name: '',
         description: '',
         duration: '',
@@ -58,25 +63,6 @@ const ExerciseTracker = () => {
     });
     deleteExercise(id);
   };
-
-  // const exerciseList = exercises.map((exercise) => (
-  //   <table key={exercise.id}>
-  //     <tr>
-  //       <th>Name:</th>
-  //       <th>Description:</th>
-  //       <th>Duration:</th>
-  //       <th>Date:</th>
-  //       <th>Action:</th>
-  //     </tr>
-  //     <p>{exercise.name}</p>
-  //     <p>Description: {exercise.description}</p>
-  //     <p>Duration: {exercise.duration}</p>
-  //     <p>Date: {exercise.date}</p>
-  //     <p>Action: {exercise.action}</p>
-  //     <button onClick={() => editExercise(exercise.id)}>Edit</button>
-  //     <button onClick={() => deleteExercise(exercise.id)}>Delete</button>
-  //   </table>
-  // ));
 
   return (
     <div>
